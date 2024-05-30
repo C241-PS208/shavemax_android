@@ -22,4 +22,10 @@
         android:name="com.dicoding.hairstyler.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <activity
+        android:id="@+id/welcomeActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.WelcomeActivity"
+        android:label="activity_welcome"
+        tools:layout="@layout/activity_welcome" />
 </navigation>

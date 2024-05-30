@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="welcome_title">HairStyler</string>
+    <string name="different_types_of_hairstyle">Different types of hairstyle</string>
+    <string name="let_s_get_started">Let\'s Get Started</string>
+    <string name="create_account">Create Account</string>
+    <string name="i_already_have_an_account">I already have an account</string>
 </resources>
