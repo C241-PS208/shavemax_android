@@ -28,4 +28,9 @@
         android:name="com.dicoding.hairstyler.ui.authentication.WelcomeActivity"
         android:label="activity_welcome"
         tools:layout="@layout/activity_welcome" />
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.RegisterActivity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
 </navigation>

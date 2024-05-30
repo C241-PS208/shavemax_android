@@ -58,13 +58,13 @@
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnGetStarted"
+            android:id="@+id/btnToRegisterPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/getstarted_button_background"
+            android:background="@drawable/get_started_button_background"
             android:drawablePadding="8dp"
             android:fontFamily="@font/sora_bold"
             android:gravity="center"
@@ -74,6 +74,7 @@
             android:textAllCaps="false" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnToLoginPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
