@@ -40,6 +40,7 @@
             android:textSize="24sp" />
 
         <TextView
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sora_regular"
@@ -61,34 +62,34 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtUsername"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="14sp"
             android:background="@drawable/edittext_background"
             android:fontFamily="@font/sora_light"
             android:hint="@string/username_hint"
-            android:inputType="text"
-            android:textSize="14sp" />
+            android:inputType="text" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="14sp"
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_background"
             android:fontFamily="@font/sora_light"
             android:hint="@string/email_hint"
-            android:inputType="textEmailAddress"
-            android:textSize="14sp" />
+            android:inputType="textEmailAddress" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="14sp"
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_background"
             android:fontFamily="@font/sora_light"
             android:hint="@string/password_hint"
-            android:inputType="textPassword"
-            android:textSize="14sp" />
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout
