@@ -17,12 +17,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.authentication.WelcomeActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ui.authentication.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
