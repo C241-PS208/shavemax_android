@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.authentication.LoginActivity">
+    tools:context=".ui.authentication.RegisterActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnBackToWelcome"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sora_bold"
-            android:text="@string/login_title"
+            android:text="@string/register_title"
             android:textColor="@color/regular_brown"
             android:textSize="24sp" />
 
@@ -59,6 +59,25 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeWidth="0dp"
+            android:hint="@string/username_hint"
+            app:hintTextColor="@color/hint_colors">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="@font/sora_light"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -99,8 +118,24 @@
                 android:background="@drawable/edittext_background"
                 android:fontFamily="@font/sora_light"
                 android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeWidth="0dp"
+                android:hint="@string/gender_hint"
+                app:hintTextColor="@color/hint_colors">
+
+                <Spinner
+                    android:id="@+id/spinnerGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/sora_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -115,7 +150,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnLoginAccount"
+            android:id="@+id/btnCreateAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -126,23 +161,24 @@
             android:padding="8dp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/white"
-            android:text="@string/sign_in"
+            android:text="@string/create_account"
             android:textAllCaps="false" />
 
         <include
             layout="@layout/divider_with_text" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnToRegisterPage"
+            android:id="@+id/btnToLoginPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/transparent_button_background"
             android:layout_marginHorizontal="32dp"
-            android:text="@string/i_don_t_have_an_account"
+            android:text="@string/i_already_have_an_account"
             android:textAllCaps="false"
             android:fontFamily="@font/sora_regular"
             android:textColor="@color/regular_brown"/>
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

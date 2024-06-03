@@ -3,4 +3,22 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="welcome_title">HairStyler</string>
+    <string name="different_types_of_hairstyle">Different types of hairstyle</string>
+    <string name="let_s_get_started">Let\'s Get Started</string>
+    <string name="create_account">Create Account</string>
+    <string name="i_already_have_an_account">I already have an account</string>
+    <string name="register_title">Create Account</string>
+    <string name="register_desc">Join the HairStyler Community and Find your \nBest Suited Hairstyle</string>
+    <string name="or">Or</string>
+    <string name="username_hint">username</string>
+    <string name="email_hint">email</string>
+    <string name="password_hint">password</string>
+    <string name="login_title">Login Now</string>
+    <string name="sign_in">Sign In</string>
+    <string name="i_don_t_have_an_account">I don\'t have an account</string>
+    <string name="back">Back</string>
+    <string name="gender_hint">gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

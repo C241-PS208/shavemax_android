@@ -22,4 +22,20 @@
         android:name="com.dicoding.hairstyler.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <activity
+        android:id="@+id/welcomeActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.WelcomeActivity"
+        android:label="activity_welcome"
+        tools:layout="@layout/activity_welcome" />
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.RegisterActivity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>
