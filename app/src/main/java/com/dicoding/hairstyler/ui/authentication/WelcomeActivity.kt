@@ -1,13 +1,11 @@
 package com.dicoding.hairstyler.ui.authentication
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.databinding.ActivityWelcomeBinding
+import com.dicoding.hairstyler.ui.authentication.login.LoginActivity
+import com.dicoding.hairstyler.ui.authentication.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding

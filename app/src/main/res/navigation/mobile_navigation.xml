@@ -30,12 +30,12 @@
         tools:layout="@layout/activity_welcome" />
     <activity
         android:id="@+id/registerActivity"
-        android:name="com.dicoding.hairstyler.ui.authentication.RegisterActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.register.RegisterActivity"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.dicoding.hairstyler.ui.authentication.LoginActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.login.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
 </navigation>
