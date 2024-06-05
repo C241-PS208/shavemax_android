@@ -13,20 +13,27 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = "session")
 
-class SessionPreference private constructor(val dataStore: DataStore<Preferences>) {
+class SessionPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
     suspend fun saveToken(
-        signInSuccessResponse: SignInSuccessResponse
+        userModel: UserModel
     ) {
         dataStore.edit {mutablePreferences ->
-            mutablePreferences[TOKEN_KEY] = signInSuccessResponse.token
+            mutablePreferences[TOKEN_KEY] = userModel.token
+            mutablePreferences[NAME_KEY] = userModel.name
+            mutablePreferences[EMAIL_KEY] = userModel.email
+            mutablePreferences[GENDER_KEY] = userModel.gender
+
         }
     }
 
-    fun getToken() : Flow<SignInSuccessResponse> {
+    fun getToken() : Flow<UserModel> {
         return dataStore.data.map {value: Preferences ->
-            SignInSuccessResponse(
+            UserModel(
                 token = value[TOKEN_KEY] ?: "",
+                name = value[NAME_KEY] ?: "",
+                email = value[EMAIL_KEY] ?: "",
+                gender = value[GENDER_KEY] ?: "",
             )
         }
     }
@@ -41,6 +48,9 @@ class SessionPreference private constructor(val dataStore: DataStore<Preferences
         @Volatile
 
         private var TOKEN_KEY = stringPreferencesKey("token")
+        private val GENDER_KEY = stringPreferencesKey("userId")
+        private val NAME_KEY = stringPreferencesKey("name")
+        private val EMAIL_KEY = stringPreferencesKey("email")
 
         private var INSTANCE : SessionPreference? = null
         fun getPreferenceInstance(dataStore: DataStore<Preferences>) : SessionPreference{

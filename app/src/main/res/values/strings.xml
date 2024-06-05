@@ -11,7 +11,7 @@
     <string name="register_title">Create Account</string>
     <string name="register_desc">Join the HairStyler Community and Find your \nBest Suited Hairstyle</string>
     <string name="or">Or</string>
-    <string name="username_hint">username</string>
+    <string name="name_hint">name</string>
     <string name="email_hint">email</string>
     <string name="password_hint">password</string>
     <string name="login_title">Login Now</string>

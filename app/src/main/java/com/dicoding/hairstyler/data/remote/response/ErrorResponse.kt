@@ -8,11 +8,11 @@ data class ErrorResponse(
 	val title: String,
 
 	@field:SerializedName("message")
-	val message: String,
+	override val message: String,
 
 	@field:SerializedName("timestamp")
 	val timestamp: String,
 
 	@field:SerializedName("statusCode")
 	val statusCode: Int
-)
+) : Exception(message)
