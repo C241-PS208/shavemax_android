@@ -10,6 +10,7 @@ import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 
 class RegisterViewModel(private val repositoryImpl: UserRepositoryImpl) : ViewModel() {
     private val _status = MutableLiveData<Boolean>()
@@ -27,10 +28,18 @@ class RegisterViewModel(private val repositoryImpl: UserRepositoryImpl) : ViewMo
                 val errorBody = e.response()?.errorBody()?.string()
                 errorBody?.let {
                     val errorResponse = Gson().fromJson(it, ErrorResponse::class.java)
-                    _errorMessage.postValue(errorResponse.title ?: "Unknown Error") // Default Value is NEEDED to prevent error
+                    _errorMessage.postValue(errorResponse.title) // Default Value is NEEDED to prevent error
                 }
                 _status.postValue(false)
-                Log.e(TAG, e.toString())
+                Log.e(TAG, e.toString(),e)
+            } catch (e: SocketTimeoutException) {
+                _errorMessage.postValue("The request timed out. Please check your connection and try again.")
+                _status.postValue(false)
+                Log.e(TAG, "Socket Timeout Exception: ${e.message ?: "Operation timed out"}",e)
+            } catch (e: Exception) {
+                _errorMessage.postValue("An unexpected error occurred. Please try again.")
+                _status.postValue(false)
+                Log.e(TAG, "Unknown Exception: ${e.message}",e)
             }
         }
     }

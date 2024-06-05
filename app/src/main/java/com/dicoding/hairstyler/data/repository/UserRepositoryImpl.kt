@@ -12,6 +12,7 @@ import com.dicoding.hairstyler.data.remote.retrofit.ApiService
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 
 class UserRepositoryImpl (private val sessionPreference: SessionPreference, private val apiService: ApiService) : UserRepository{
     override suspend fun saveToken(userModel: UserModel) {
@@ -27,6 +28,10 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
             return apiService.signUp(SignUpRequest(name, email, password, gender))
         } catch (e: HttpException) {
             throw e
+        } catch (e: SocketTimeoutException) {
+            throw e
+        } catch (e: Exception) {
+            throw e
         }
     }
 
@@ -35,6 +40,10 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
             val user = apiService.signIn(SignInRequest(email, password))
             return UserModel(user.gender, user.name, user.email, user.token)
         } catch (e: HttpException) {
+            throw e
+        } catch (e: SocketTimeoutException) {
+            throw e
+        } catch (e: Exception) {
             throw e
         }
     }
