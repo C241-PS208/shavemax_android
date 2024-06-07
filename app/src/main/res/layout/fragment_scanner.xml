@@ -67,7 +67,8 @@
             android:id="@+id/ivFace"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@tools:sample/avatars" />
+            android:contentDescription="@string/user_face"
+            android:src="@drawable/scanningface" />
     </androidx.cardview.widget.CardView>
 
     <LinearLayout

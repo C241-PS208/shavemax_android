@@ -28,4 +28,5 @@
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
     <string name="scan">Scan</string>
+    <string name="user_face">User Face</string>
 </resources>
