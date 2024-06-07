@@ -23,4 +23,9 @@
     <string name="female">Female</string>
     <string name="title_scanner">Scanner</string>
     <string name="title_account">Account</string>
+    <string name="scan_title">Upload an Image of Your Face</string>
+    <string name="scan_desc">Find out the shape of your face and the type of your hair</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="scan">Scan</string>
 </resources>

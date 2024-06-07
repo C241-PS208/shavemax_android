@@ -28,10 +28,6 @@ class ScannerFragment : Fragment() {
         _binding = FragmentScannerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        scannerViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 
