@@ -14,6 +14,8 @@
         android:background="@drawable/transparent_button_background"
         android:drawableEnd="@drawable/baseline_exit_to_app_red_24"
         android:text="@string/log_out"
+        android:textAllCaps="false"
+        android:fontFamily="@font/sora_semibold"
         android:gravity="center_vertical"
         android:padding="8dp"
         android:layout_marginTop="8dp"

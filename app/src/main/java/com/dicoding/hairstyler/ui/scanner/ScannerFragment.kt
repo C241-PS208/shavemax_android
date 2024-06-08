@@ -43,15 +43,21 @@ class ScannerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
 
-        binding.btnBackToHome.setOnClickListener {
-            it.findNavController().navigate(R.id.action_navigation_scanner_to_navigation_home)
-        }
+
+
+
     }
 
     private fun setupAction() {
+        binding.btnBackToHome.setOnClickListener {
+            it.findNavController().navigate(R.id.action_navigation_scanner_to_navigation_home)
+        }
         binding.btnOpenCamera.setOnClickListener { openCamera() }
         binding.btnOpenGallery.setOnClickListener { openGallery() }
-        binding.btnSubmitPicture.setOnClickListener { postPicture() }
+        binding.btnSubmitPicture.setOnClickListener {
+            it.findNavController().navigate(R.id.action_navigation_scanner_to_resultFragment)
+            //Need post picture implementation
+        }
     }
 
     private fun postPicture() {

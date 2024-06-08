@@ -31,4 +31,8 @@
     <string name="user_face">User Face</string>
     <string name="no_media_selected">No media selected</string>
     <string name="log_out">Log Out</string>
+    <string name="haircut_model">Haircut Model</string>
+    <string name="your_hair_type_is_title">Your hair type is:</string>
+    <string name="your_face_type_is_title">Your face type is:</string>
+    <string name="recommended_hairstyles_title">Recommended Hairstyles</string>
 </resources>
