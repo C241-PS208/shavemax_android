@@ -31,7 +31,7 @@ class ScannerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val scannerViewModel =
-            ViewModelProvider(this).get(ScannerViewModel::class.java)
+            ViewModelProvider(this)[ScannerViewModel::class.java]
 
         _binding = FragmentScannerBinding.inflate(inflater, container, false)
         val root: View = binding.root
