@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.hairstyler.databinding.FragmentAccountBinding
+import com.dicoding.hairstyler.ui.ViewModelFactory
 
 class AccountFragment : Fragment() {
 
@@ -17,22 +19,28 @@ class AccountFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val accountViewModel: AccountViewModel by viewModels {
+        ViewModelFactory.getInstance(requireActivity())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val accountViewModel =
-            ViewModelProvider(this).get(AccountViewModel::class.java)
 
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        accountViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnLogOutAccount.setOnClickListener {
+            accountViewModel.logOut()
+        }
     }
 
     override fun onDestroyView() {
