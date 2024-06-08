@@ -3,11 +3,21 @@ package com.dicoding.hairstyler.ui.account
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.dicoding.hairstyler.data.local.preference.UserModel
+import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
+import kotlinx.coroutines.launch
 
-class AccountViewModel : ViewModel() {
+class AccountViewModel(private val repositoryImpl: UserRepositoryImpl) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is account Fragment"
+    fun logOut() {
+        viewModelScope.launch {
+            repositoryImpl.logOut()
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun getUser() : LiveData<UserModel>{
+        return repositoryImpl.getToken().asLiveData()
+    }
 }

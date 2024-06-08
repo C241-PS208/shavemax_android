@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.dicoding.hairstyler.databinding.FragmentAccountBinding
-
+import com.dicoding.hairstyler.ui.ViewModelFactory
 class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
@@ -17,22 +16,33 @@ class AccountFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val accountViewModel: AccountViewModel by viewModels {
+        ViewModelFactory.getInstance(requireActivity())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val accountViewModel =
-            ViewModelProvider(this)[AccountViewModel::class.java]
 
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        accountViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnLogOutAccount.setOnClickListener {
+            accountViewModel.logOut()
+        }
+
+        accountViewModel.getUser().observe(viewLifecycleOwner){
+            binding.name.text = it.name
+            binding.gender.text = it.gender
+        }
     }
 
     override fun onDestroyView() {

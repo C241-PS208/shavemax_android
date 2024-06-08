@@ -9,9 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="regular_brown">#93795E</color>
     <color name="light_brown">#c3bdab</color>
+    <color name="darker_brown">#6D4C41</color>
     <color name="cyan">#96d0f1 </color>
     <color name="dark_blue">#15212d</color>
     <color name="gray">#35485b</color>
     <color name="transparent">#00000000</color>
     <color name="hint_colors">#808080</color>
+    <color name="red">#FF0000</color>
 </resources>
