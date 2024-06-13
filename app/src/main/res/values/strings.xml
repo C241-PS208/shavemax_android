@@ -41,4 +41,8 @@
     <string name="map_icon">map icon\n</string>
     <string name="arrow_icon">arrow icon</string>
     <string name="bookmark_icon">bookmark icon</string>
+    <string name="hello_home">Hello,</string>
+    <string name="map_label">Map</string>
+    <string name="scan_label">Scan</string>
+    <string name="saved_label">Saved</string>
 </resources>
