@@ -43,7 +43,7 @@ class ScannerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
 
-
+        
 
 
     }
