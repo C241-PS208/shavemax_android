@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.databinding.FragmentResultBinding
 import com.dicoding.hairstyler.databinding.FragmentScannerBinding
@@ -34,5 +35,14 @@ class ResultFragment : Fragment() {
         binding.btnBackToHome.setOnClickListener {
             it.findNavController().navigate(R.id.action_resultFragment_to_navigation_home)
         }
+
+        setupAdapter()
+    }
+
+    private fun setupAdapter() {
+        val resultAdapter = ResultAdapter()
+        //Submit data
+        binding.rvResult.layoutManager = LinearLayoutManager(requireActivity())
+        binding.rvResult.adapter = resultAdapter
     }
 }
