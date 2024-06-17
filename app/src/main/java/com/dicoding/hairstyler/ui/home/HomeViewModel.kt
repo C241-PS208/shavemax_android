@@ -3,11 +3,13 @@ package com.dicoding.hairstyler.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.dicoding.hairstyler.data.local.preference.UserModel
+import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel (private val repositoryImpl: UserRepositoryImpl) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    fun getUser() : LiveData<UserModel>{
+        return repositoryImpl.getToken().asLiveData()
     }
-    val text: LiveData<String> = _text
 }

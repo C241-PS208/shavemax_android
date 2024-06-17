@@ -8,6 +8,7 @@ import com.dicoding.hairstyler.di.Injection
 import com.dicoding.hairstyler.ui.account.AccountViewModel
 import com.dicoding.hairstyler.ui.authentication.login.LoginViewModel
 import com.dicoding.hairstyler.ui.authentication.register.RegisterViewModel
+import com.dicoding.hairstyler.ui.home.HomeViewModel
 import com.dicoding.hairstyler.ui.main.MainViewModel
 
 class ViewModelFactory(
@@ -27,6 +28,9 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                 AccountViewModel(repositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(repositoryImpl) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

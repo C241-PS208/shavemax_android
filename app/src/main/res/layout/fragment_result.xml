@@ -104,7 +104,7 @@
         android:gravity="center"
         android:text="@string/recommended_hairstyles_title"
         android:textSize="24sp"
-        android:textColor="@color/regular_brown"
+        android:textColor="@color/blue1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
