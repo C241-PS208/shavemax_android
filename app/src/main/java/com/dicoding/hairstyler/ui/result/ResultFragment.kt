@@ -15,6 +15,7 @@ import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.databinding.FragmentResultBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
+import com.dicoding.hairstyler.ui.main.MainActivity
 
 class ResultFragment : Fragment() {
 
@@ -35,6 +36,16 @@ class ResultFragment : Fragment() {
     ): View {
         _binding = FragmentResultBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNav()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNav()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
