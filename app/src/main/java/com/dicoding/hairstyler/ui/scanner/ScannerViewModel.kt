@@ -1,13 +1,9 @@
 package com.dicoding.hairstyler.ui.scanner
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
+import java.io.File
 
-class ScannerViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is scanner Fragment"
-    }
-    val text: LiveData<String> = _text
+class ScannerViewModel (private val repositoryImpl: UserRepositoryImpl) : ViewModel() {
+    fun predict(image : File) = repositoryImpl.predict(image)
 }

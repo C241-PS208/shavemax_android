@@ -1,9 +1,12 @@
 package com.dicoding.hairstyler.data.repository
 
+import androidx.lifecycle.LiveData
 import com.dicoding.hairstyler.data.local.preference.UserModel
-import com.dicoding.hairstyler.data.remote.response.SignInSuccessResponse
+import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.data.remote.response.SignUpSuccessResponse
+import com.dicoding.hairstyler.utils.ResultState
 import kotlinx.coroutines.flow.Flow
+import java.io.File
 
 interface UserRepository {
 
@@ -14,4 +17,6 @@ interface UserRepository {
 
     suspend fun signIn(email: String, password: String): UserModel
     suspend fun logOut()
+
+    fun predict(image : File) : LiveData<ResultState<ResultResponse>>
 }

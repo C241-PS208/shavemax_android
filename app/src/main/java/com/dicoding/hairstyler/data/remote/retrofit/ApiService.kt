@@ -2,6 +2,7 @@ package com.dicoding.hairstyler.data.remote.retrofit
 
 import com.dicoding.hairstyler.data.remote.request.SignInRequest
 import com.dicoding.hairstyler.data.remote.request.SignUpRequest
+import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.data.remote.response.SignInSuccessResponse
 import com.dicoding.hairstyler.data.remote.response.SignUpSuccessResponse
 import okhttp3.MultipartBody
@@ -28,4 +29,12 @@ interface ApiService {
     suspend fun signIn(
         @Body signUpRequest: SignInRequest
     ): SignInSuccessResponse
+
+    //endpoint blm dpt
+    @Multipart
+    @POST("predict")
+    suspend fun predict(
+        @Part file: MultipartBody.Part
+    ) : ResultResponse
+
 }

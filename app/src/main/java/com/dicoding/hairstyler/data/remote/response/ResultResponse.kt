@@ -1,7 +1,10 @@
 package com.dicoding.hairstyler.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ResultResponse(
 
 	@field:SerializedName("hair_type")
@@ -12,8 +15,9 @@ data class ResultResponse(
 
 	@field:SerializedName("recommendations")
 	val recommendations: List<RecommendationsItem>
-)
+) : Parcelable
 
+@Parcelize
 data class RecommendationsItem(
 
 	@field:SerializedName("id")
@@ -27,4 +31,4 @@ data class RecommendationsItem(
 
 	@field:SerializedName("photo_url")
 	val photoUrl: String
-)
+) : Parcelable

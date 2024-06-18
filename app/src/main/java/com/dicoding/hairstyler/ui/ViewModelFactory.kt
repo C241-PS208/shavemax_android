@@ -10,6 +10,8 @@ import com.dicoding.hairstyler.ui.authentication.login.LoginViewModel
 import com.dicoding.hairstyler.ui.authentication.register.RegisterViewModel
 import com.dicoding.hairstyler.ui.home.HomeViewModel
 import com.dicoding.hairstyler.ui.main.MainViewModel
+import com.dicoding.hairstyler.ui.result.ResultViewModel
+import com.dicoding.hairstyler.ui.scanner.ScannerViewModel
 
 class ViewModelFactory(
     private val repositoryImpl: UserRepositoryImpl,
@@ -31,6 +33,12 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(ResultViewModel::class.java) -> {
+                ResultViewModel(repositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(ScannerViewModel::class.java) -> {
+                ScannerViewModel(repositoryImpl) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

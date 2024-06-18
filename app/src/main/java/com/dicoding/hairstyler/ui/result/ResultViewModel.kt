@@ -1,7 +1,8 @@
 package com.dicoding.hairstyler.ui.result
 
 import androidx.lifecycle.ViewModel
+import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
 
-class ResultViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ResultViewModel (private val repositoryImpl: UserRepositoryImpl): ViewModel() {
+
 }
