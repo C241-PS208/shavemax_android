@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.HairStyler" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="LightTheme.HairStyler" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue1</item>
         <item name="colorPrimaryVariant">@color/blue1</item>
