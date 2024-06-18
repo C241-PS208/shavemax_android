@@ -61,7 +61,6 @@ class ScannerFragment : Fragment() {
         binding.btnOpenCamera.setOnClickListener { openCamera() }
         binding.btnOpenGallery.setOnClickListener { openGallery() }
         binding.btnSubmitPicture.setOnClickListener {
-            it.findNavController().navigate(R.id.action_navigation_scanner_to_resultFragment)
             postPicture()
         }
     }
