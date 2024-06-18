@@ -1,5 +1,6 @@
 package com.dicoding.hairstyler.ui.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,8 +44,15 @@ class AccountFragment : Fragment() {
             binding.name.text = it.name
             binding.gender.text = it.gender
         }
+
+        setupAction()
     }
 
+    fun setupAction() {
+        binding.rowSavedHairstyle.setOnClickListener {
+
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
