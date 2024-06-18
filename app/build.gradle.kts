@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -14,7 +16,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String", "BASE_URL", "\"https://shavemax-wcd5thfyoq-et.a.run.app/api/\"")
+        buildConfigField("String", "BASE_URL_ONE", "\"https://shavemax-wcd5thfyoq-et.a.run.app/api/\"")
+        buildConfigField("String", "BASE_URL_TWO", "\"http://35.224.249.79:5000/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -65,4 +68,7 @@ dependencies {
 
     //DataStore
     implementation(libs.androidx.datastore.preferences)
+
+    //Glide
+    implementation(libs.glide)
 }

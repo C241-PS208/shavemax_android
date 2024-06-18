@@ -6,12 +6,15 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class ApiConfig {
-    companion object{
-        private const val BASE_URL = BuildConfig.BASE_URL
+    companion object {
 
-        fun getApiService(token: String): ApiService {
+        private const val BASE_URL_ONE = BuildConfig.BASE_URL_ONE
+        private const val BASE_URL_TWO = BuildConfig.BASE_URL_TWO
+
+        private fun createOkHttpClient(token: String): OkHttpClient {
             val loggingInterceptor = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             } else {
@@ -20,16 +23,35 @@ class ApiConfig {
             val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
                 val requestHeaders = req.newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
+                    .addHeader("Authorization", token)
                     .build()
                 chain.proceed(requestHeaders)
             }
-            val client = OkHttpClient.Builder()
+
+            return OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .addInterceptor(authInterceptor)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
                 .build()
+        }
+
+        fun getApiServiceOne(token: String): ApiService {
+            val client = createOkHttpClient(token)
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL_ONE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(ApiService::class.java)
+        }
+
+        fun getApiServiceTwo(token: String): ApiService {
+            val client = createOkHttpClient(token)
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL_TWO)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

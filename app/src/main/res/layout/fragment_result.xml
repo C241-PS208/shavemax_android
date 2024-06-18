@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.result.ResultFragment"
-    android:paddingBottom="?android:attr/actionBarSize">
+    tools:context=".ui.result.ResultFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnBackToHome"
@@ -104,7 +103,7 @@
         android:gravity="center"
         android:text="@string/recommended_hairstyles_title"
         android:textSize="24sp"
-        android:textColor="@color/regular_brown"
+        android:textColor="@color/blue1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +115,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        tools:itemCount="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
