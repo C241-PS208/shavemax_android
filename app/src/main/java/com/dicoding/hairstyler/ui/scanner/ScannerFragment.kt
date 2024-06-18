@@ -19,6 +19,7 @@ import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.databinding.FragmentScannerBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
+import com.dicoding.hairstyler.ui.main.MainActivity
 import com.dicoding.hairstyler.utils.ResultState
 import com.dicoding.hairstyler.utils.getImageUri
 import com.dicoding.hairstyler.utils.uriToFile
@@ -51,10 +52,16 @@ class ScannerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
+    }
 
-        
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNav()
+    }
 
-
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNav()
     }
 
     private fun setupAction() {

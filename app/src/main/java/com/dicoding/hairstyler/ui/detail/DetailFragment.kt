@@ -1,15 +1,13 @@
 package com.dicoding.hairstyler.ui.detail
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.databinding.FragmentDetailBinding
-import com.dicoding.hairstyler.databinding.FragmentResultBinding
 
 class DetailFragment : Fragment() {
 
@@ -22,7 +20,10 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

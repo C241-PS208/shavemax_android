@@ -2,17 +2,16 @@ package com.dicoding.hairstyler.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.databinding.ActivityMainBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
 import com.dicoding.hairstyler.ui.authentication.WelcomeActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,5 +36,13 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
+    }
+
+    fun showBottomNav() {
+        binding.navView.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNav() {
+        binding.navView.visibility = View.GONE
     }
 }
