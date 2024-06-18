@@ -8,13 +8,13 @@ import kotlinx.parcelize.Parcelize
 data class ResultResponse(
 
 	@field:SerializedName("hair_type")
-	val hairType: String,
+	val hairType: String? = null,
 
 	@field:SerializedName("face_type")
-	val faceType: String,
+	val faceType: String? = null,
 
 	@field:SerializedName("recommendations")
-	val recommendations: List<RecommendationsItem>
+	val recommendations: List<RecommendationsItem>? = null
 ) : Parcelable
 
 @Parcelize
@@ -24,11 +24,11 @@ data class RecommendationsItem(
 	val id: Int,
 
 	@field:SerializedName("name")
-	val name: String,
+	val name: String? = null,
 
 	@field:SerializedName("description")
-	val description: String,
+	val description: String? = null,
 
 	@field:SerializedName("photo_url")
-	val photoUrl: String
+	val photoUrl: String? = null
 ) : Parcelable

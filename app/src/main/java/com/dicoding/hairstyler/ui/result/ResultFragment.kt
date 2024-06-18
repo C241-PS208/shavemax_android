@@ -9,8 +9,10 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.hairstyler.R
+import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.databinding.FragmentResultBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
 
@@ -23,21 +25,23 @@ class ResultFragment : Fragment() {
         ViewModelFactory.getInstance(requireActivity())
     }
 
-    private val resultResponse = ResultFragmentArgs.fromBundle(arguments as Bundle).ResultResponse
-    private val imageUri : Uri = ResultFragmentArgs.fromBundle(arguments as Bundle).imageUri.toUri()
+    private val args: ResultFragmentArgs by navArgs()
+    private lateinit var resultResponse: ResultResponse
+    private lateinit var imageUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentResultBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        resultResponse = args.ResultResponse
+        imageUri = args.imageUri.toUri()
 
         setupAction()
         setupAdapter()
@@ -58,8 +62,13 @@ class ResultFragment : Fragment() {
 
     private fun setupAdapter() {
         val resultAdapter = ResultAdapter()
-        resultAdapter.submitList(resultResponse.recommendations)
+        resultAdapter.submitList(resultResponse.recommendations ?: emptyList())
         binding.rvResult.layoutManager = LinearLayoutManager(requireActivity())
         binding.rvResult.adapter = resultAdapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -33,9 +33,9 @@ class ResultAdapter : ListAdapter<RecommendationsItem, ResultAdapter.MyViewHolde
         holder.bind(recommendationsItem)
         holder.itemView.setOnClickListener {
             val toDetailFragment = ResultFragmentDirections.actionResultFragmentToDetailFragment(
-                recommendationsItem.name,
-                recommendationsItem.description,
-                recommendationsItem.photoUrl
+                recommendationsItem.name ?: "Tes Name",
+                recommendationsItem.description ?: "Tes Desc",
+                recommendationsItem.photoUrl ?: "https://cdn.britannica.com/61/137461-050-BB6C5D80/Brad-Pitt-2008.jpg"
             )
             holder.itemView.findNavController().navigate(toDetailFragment)
         }

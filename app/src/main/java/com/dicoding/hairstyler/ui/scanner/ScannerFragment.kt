@@ -79,7 +79,7 @@ class ScannerFragment : Fragment() {
         currentImageUri?.let { uri ->
             val image = uriToFile(uri, requireActivity())
             viewModel.getUser().observe(viewLifecycleOwner){
-                gender = it.gender
+                gender = it.gender.lowercase()
             }
             viewModel.predict(image, gender ?: "male").observe(viewLifecycleOwner){
                 handleResult(it)
@@ -111,7 +111,8 @@ class ScannerFragment : Fragment() {
                         setTitle("Scan Success!")
                         setPositiveButton("CONTINUE") { _, _ ->
                             val resultResponse = result.data
-                            val toResultFragment = ScannerFragmentDirections.actionNavigationScannerToResultFragment(resultResponse, currentImageUri.toString())
+                            val imageUri = currentImageUri.toString()
+                            val toResultFragment = ScannerFragmentDirections.actionNavigationScannerToResultFragment(resultResponse, imageUri)
                             findNavController().navigate(toResultFragment)
                         }
                         create()

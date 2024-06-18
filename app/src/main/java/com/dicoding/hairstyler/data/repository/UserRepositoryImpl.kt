@@ -21,7 +21,7 @@ import retrofit2.HttpException
 import java.io.File
 import java.net.SocketTimeoutException
 
-class UserRepositoryImpl (private val sessionPreference: SessionPreference, private val apiService: ApiService) : UserRepository{
+class UserRepositoryImpl (private val sessionPreference: SessionPreference, private val apiServiceOne: ApiService, private val apiServiceTwo: ApiService) : UserRepository{
     override suspend fun saveToken(userModel: UserModel) {
         sessionPreference.saveToken(userModel)
     }
@@ -32,7 +32,7 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
 
     override suspend fun signUp(name: String, email: String, password: String, gender: String): SignUpSuccessResponse {
         try {
-            return apiService.signUp(SignUpRequest(name, email, password, gender))
+            return apiServiceOne.signUp(SignUpRequest(name, email, password, gender))
         } catch (e: HttpException) {
             throw e
         } catch (e: SocketTimeoutException) {
@@ -44,7 +44,7 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
 
     override suspend fun signIn(email: String, password: String): UserModel {
         try {
-            val user = apiService.signIn(SignInRequest(email, password))
+            val user = apiServiceOne.signIn(SignInRequest(email, password))
             return UserModel(user.gender, user.name, user.email, user.token)
         } catch (e: HttpException) {
             throw e
@@ -64,10 +64,10 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
         val imageRequest = image.asRequestBody("image/jpeg".toMediaType())
         val genderRequest = gender.toRequestBody("text/plain".toMediaType())
         val multipartBody = MultipartBody.Part.createFormData(
-            name = "predict", filename = image.name, body = imageRequest
+            name = "image", filename = image.name, body = imageRequest
         )
         try {
-            val resultResponse = apiService.predict(multipartBody, genderRequest)
+            val resultResponse = apiServiceTwo.predict(multipartBody, genderRequest)
             emit(ResultState.Success(resultResponse))
         } catch (e: HttpException) {
             val errorMessage = extractErrorMessage(e)
@@ -95,9 +95,9 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
         @Volatile
 
         private var INSTANCE : UserRepositoryImpl? = null
-        fun getRepositoryInstance(sessionPreference: SessionPreference, apiService: ApiService) : UserRepositoryImpl{
+        fun getRepositoryInstance(sessionPreference: SessionPreference, apiServiceOne: ApiService, apiServiceTwo: ApiService) : UserRepositoryImpl{
             return INSTANCE ?: synchronized(this){
-                INSTANCE ?: UserRepositoryImpl(sessionPreference, apiService)
+                INSTANCE ?: UserRepositoryImpl(sessionPreference, apiServiceOne, apiServiceTwo)
             }.also { INSTANCE = it }
         }
     }
