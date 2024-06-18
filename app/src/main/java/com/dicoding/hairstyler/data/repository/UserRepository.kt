@@ -18,5 +18,5 @@ interface UserRepository {
     suspend fun signIn(email: String, password: String): UserModel
     suspend fun logOut()
 
-    fun predict(image : File) : LiveData<ResultState<ResultResponse>>
+    fun predict(image : File, gender: String) : LiveData<ResultState<ResultResponse>>
 }

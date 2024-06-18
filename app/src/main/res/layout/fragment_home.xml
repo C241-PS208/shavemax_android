@@ -178,7 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:fontFamily="@font/sora_semibold"
-        android:text="Find Hairstyles"
+        android:text="@string/find_hairstyles"
         android:textColor="@color/blue1"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

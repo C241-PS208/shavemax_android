@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import java.io.File
 import java.net.SocketTimeoutException
@@ -58,14 +59,15 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
         sessionPreference.logOut()
     }
 
-    override fun predict(image: File): LiveData<ResultState<ResultResponse>> = liveData {
+    override fun predict(image: File, gender: String): LiveData<ResultState<ResultResponse>> = liveData {
         emit(ResultState.Loading)
         val imageRequest = image.asRequestBody("image/jpeg".toMediaType())
+        val genderRequest = gender.toRequestBody("text/plain".toMediaType())
         val multipartBody = MultipartBody.Part.createFormData(
             name = "predict", filename = image.name, body = imageRequest
         )
         try {
-            val resultResponse = apiService.predict(multipartBody)
+            val resultResponse = apiService.predict(multipartBody, genderRequest)
             emit(ResultState.Success(resultResponse))
         } catch (e: HttpException) {
             val errorMessage = extractErrorMessage(e)

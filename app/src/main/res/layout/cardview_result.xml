@@ -18,17 +18,27 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/ivResult"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ivResultContainer"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:contentDescription="@string/haircut_model"
-            android:scaleType="centerCrop"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars"
-            tools:srcCompat="@tools:sample/avatars[11]" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivResult"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/haircut_model"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/avatars"
+                tools:srcCompat="@tools:sample/avatars[11]"
+                android:elevation="4dp"/>
+        </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/tvHaircutName"
@@ -40,8 +50,8 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ivResult"
-            app:layout_constraintTop_toTopOf="@+id/ivResult" />
+            app:layout_constraintStart_toEndOf="@+id/ivResultContainer"
+            app:layout_constraintTop_toTopOf="@+id/ivResultContainer" />
 
         <TextView
             android:id="@+id/tvHaircutDesc"

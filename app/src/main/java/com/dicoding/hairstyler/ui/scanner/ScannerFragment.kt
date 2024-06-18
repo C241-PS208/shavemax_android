@@ -31,8 +31,11 @@ class ScannerFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private var currentImageUri: Uri? = null
+    private var gender : String? = null
 
     private val viewModel : ScannerViewModel by viewModels { ViewModelFactory.getInstance(requireActivity()) }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +71,10 @@ class ScannerFragment : Fragment() {
     private fun postPicture() {
         currentImageUri?.let { uri ->
             val image = uriToFile(uri, requireActivity())
-            viewModel.predict(image).observe(viewLifecycleOwner){
+            viewModel.getUser().observe(viewLifecycleOwner){
+                gender = it.gender
+            }
+            viewModel.predict(image, gender ?: "male").observe(viewLifecycleOwner){
                 handleResult(it)
             }
         }

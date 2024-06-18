@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.dicoding.hairstyler.databinding.FragmentHomeBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
-import com.dicoding.hairstyler.ui.account.AccountViewModel
 
 class HomeFragment : Fragment() {
 
@@ -40,6 +38,15 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getUser().observe(viewLifecycleOwner){
             binding.tvDisplayUsername.text = it.name
+        }
+
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.btnOpenScanner.setOnClickListener{
+            val toScannerFragment = HomeFragmentDirections.actionNavigationHomeToNavigationScanner()
+            it.findNavController().navigate(toScannerFragment)
         }
     }
 

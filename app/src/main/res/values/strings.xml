@@ -45,4 +45,5 @@
     <string name="map_label">Map</string>
     <string name="scan_label">Scan</string>
     <string name="saved_label">Saved</string>
+    <string name="find_hairstyles">Find Hairstyles</string>
 </resources>
