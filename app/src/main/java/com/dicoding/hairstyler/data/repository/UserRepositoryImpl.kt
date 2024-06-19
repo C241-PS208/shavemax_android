@@ -7,6 +7,7 @@ import com.dicoding.hairstyler.data.local.preference.UserModel
 import com.dicoding.hairstyler.data.remote.request.SignInRequest
 import com.dicoding.hairstyler.data.remote.request.SignUpRequest
 import com.dicoding.hairstyler.data.remote.response.ErrorResponse
+import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.data.remote.response.SignUpSuccessResponse
 import com.dicoding.hairstyler.data.remote.retrofit.ApiService
@@ -69,6 +70,23 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
         try {
             val resultResponse = apiServiceTwo.predict(multipartBody, genderRequest)
             emit(ResultState.Success(resultResponse))
+        } catch (e: HttpException) {
+            val errorMessage = extractErrorMessage(e)
+            emit(ResultState.Error(errorMessage))
+        } catch (e: SocketTimeoutException) {
+            val errorMessage = "Request timed out. Please try again."
+            emit(ResultState.Error(errorMessage))
+        } catch (e: Exception) {
+            val errorMessage = "An unexpected error occurred: ${e.localizedMessage}"
+            emit(ResultState.Error(errorMessage))
+        }
+    }
+
+    override fun getAllHairstyle(): LiveData<ResultState<List<HairstyleResponseItem>>> = liveData {
+        emit(ResultState.Loading)
+        try {
+            val hairstyleResponse = apiServiceOne.getAllHairstyle()
+            emit(ResultState.Success(hairstyleResponse))
         } catch (e: HttpException) {
             val errorMessage = extractErrorMessage(e)
             emit(ResultState.Error(errorMessage))
