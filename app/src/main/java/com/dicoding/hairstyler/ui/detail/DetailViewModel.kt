@@ -2,7 +2,6 @@ package com.dicoding.hairstyler.ui.detail
 
 import androidx.lifecycle.ViewModel
 import com.dicoding.hairstyler.data.local.room.SavedHairstyle
-import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.data.repository.HairRepositoryImpl
 
 class DetailViewModel (private val hairRepositoryImpl: HairRepositoryImpl) : ViewModel() {

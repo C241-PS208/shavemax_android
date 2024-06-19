@@ -9,7 +9,6 @@ import com.dicoding.hairstyler.ui.ViewModelFactory
 import com.dicoding.hairstyler.ui.authentication.login.LoginActivity
 import com.dicoding.hairstyler.ui.authentication.register.RegisterActivity
 import com.dicoding.hairstyler.ui.main.MainActivity
-import com.dicoding.hairstyler.ui.main.MainViewModel
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding

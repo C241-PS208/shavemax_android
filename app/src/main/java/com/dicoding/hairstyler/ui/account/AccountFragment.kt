@@ -1,6 +1,5 @@
 package com.dicoding.hairstyler.ui.account
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.dicoding.hairstyler.databinding.FragmentAccountBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
-import com.dicoding.hairstyler.ui.home.HomeFragmentDirections
 
 class AccountFragment : Fragment() {
 

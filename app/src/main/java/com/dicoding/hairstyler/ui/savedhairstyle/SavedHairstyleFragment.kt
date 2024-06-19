@@ -10,7 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.databinding.FragmentSavedHairstyleBinding
 import com.dicoding.hairstyler.ui.HairViewModelFactory
 import com.dicoding.hairstyler.utils.ResultState

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.hairstyler.data.local.room.SavedHairstyle
-import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.databinding.CardviewResultBinding
 
 class SavedHairstyleAdapter : ListAdapter<SavedHairstyle, SavedHairstyleAdapter.MyViewHolder>(DIFF_CALLBACK) {
