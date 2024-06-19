@@ -30,7 +30,7 @@ class LoginViewModel(private val repositoryImpl: UserRepositoryImpl) : ViewModel
                 val errorBody = e.response()?.errorBody()?.string()
                 errorBody?.let {
                     val errorResponse = Gson().fromJson(it, ErrorResponse::class.java)
-                    _errorMessage.postValue(errorResponse.title) // Default Value is NEEDED to prevent error
+                    _errorMessage.postValue(errorResponse.title)
                 }
                 _status.postValue(false)
                 Log.e(TAG, e.toString(),e)

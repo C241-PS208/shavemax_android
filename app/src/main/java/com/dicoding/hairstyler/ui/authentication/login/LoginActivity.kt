@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.hairstyler.databinding.ActivityLoginBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
-import com.dicoding.hairstyler.ui.authentication.WelcomeActivity
+import com.dicoding.hairstyler.ui.authentication.welcome.WelcomeActivity
 import com.dicoding.hairstyler.ui.authentication.register.RegisterActivity
 import com.dicoding.hairstyler.ui.main.MainActivity
 

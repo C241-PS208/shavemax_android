@@ -62,7 +62,7 @@
 
     <activity
         android:id="@+id/welcomeActivity"
-        android:name="com.dicoding.hairstyler.ui.authentication.WelcomeActivity"
+        android:name="com.dicoding.hairstyler.ui.authentication.welcome.WelcomeActivity"
         android:label="activity_welcome"
         tools:layout="@layout/activity_welcome" />
     <activity

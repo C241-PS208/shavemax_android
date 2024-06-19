@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.hairstyler.databinding.FragmentHomeBinding
+import com.dicoding.hairstyler.ui.HairViewModelFactory
 import com.dicoding.hairstyler.ui.ViewModelFactory
 import com.dicoding.hairstyler.utils.ResultState
 
@@ -23,7 +24,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val homeViewModel: HomeViewModel by viewModels {
-        ViewModelFactory.getInstance(requireActivity())
+        HairViewModelFactory.getInstance(requireActivity())
     }
 
     override fun onCreateView(
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        homeViewModel.getAllHairstyle().observe(viewLifecycleOwner){result ->
+        homeViewModel.hairList.observe(viewLifecycleOwner){result ->
             if (result != null){
                 when (result) {
                     is ResultState.Error -> {
