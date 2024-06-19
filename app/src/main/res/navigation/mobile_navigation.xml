@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.dicoding.hairstyler.ui.home.HomeFragment"
+        android:name="com.dicoding.shavemax.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/navigation_scanner"
-        android:name="com.dicoding.hairstyler.ui.scanner.ScannerFragment"
+        android:name="com.dicoding.shavemax.ui.scanner.ScannerFragment"
         android:label="@string/title_scanner"
         tools:layout="@layout/fragment_scanner" >
         <action
@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.dicoding.hairstyler.ui.account.AccountFragment"
+        android:name="com.dicoding.shavemax.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account">
 
@@ -78,22 +78,22 @@
 
     <activity
         android:id="@+id/welcomeActivity"
-        android:name="com.dicoding.hairstyler.ui.authentication.welcome.WelcomeActivity"
+        android:name="com.dicoding.shavemax.ui.authentication.welcome.WelcomeActivity"
         android:label="activity_welcome"
         tools:layout="@layout/activity_welcome" />
     <activity
         android:id="@+id/registerActivity"
-        android:name="com.dicoding.hairstyler.ui.authentication.register.RegisterActivity"
+        android:name="com.dicoding.shavemax.ui.authentication.register.RegisterActivity"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.dicoding.hairstyler.ui.authentication.login.LoginActivity"
+        android:name="com.dicoding.shavemax.ui.authentication.login.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.dicoding.hairstyler.ui.result.ResultFragment"
+        android:name="com.dicoding.shavemax.ui.result.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
         <action
@@ -112,14 +112,14 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="ResultResponse"
-            app:argType="com.dicoding.hairstyler.data.remote.response.ResultResponse" />
+            app:argType="com.dicoding.shavemax.data.remote.response.ResultResponse" />
         <argument
             android:name="imageUri"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/savedHairstyleFragment"
-        android:name="com.dicoding.hairstyler.ui.savedhairstyle.SavedHairstyleFragment"
+        android:name="com.dicoding.shavemax.ui.savedhairstyle.SavedHairstyleFragment"
         android:label="fragment_saved_hairstyle"
         tools:layout="@layout/fragment_saved_hairstyle" >
         <action
@@ -139,7 +139,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.dicoding.hairstyler.ui.detail.DetailFragment"
+        android:name="com.dicoding.shavemax.ui.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
@@ -155,7 +155,7 @@
 
     <fragment
         android:id="@+id/navigation_news"
-        android:name="com.dicoding.hairstyler.ui.news.NewsFragment"
+        android:name="com.dicoding.shavemax.ui.news.NewsFragment"
         android:label="@string/news_nav_title"
         tools:layout="@layout/fragment_news" >
         <action

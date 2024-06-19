@@ -68,7 +68,7 @@
             android:hint="@string/email_hint"
             app:hintTextColor="@color/hint_colors">
 
-            <com.dicoding.hairstyler.ui.customview.EmailEditText
+            <com.dicoding.shavemax.ui.customview.EmailEditText
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             android:hint="@string/password_hint"
             app:hintTextColor="@color/hint_colors">
 
-            <com.dicoding.hairstyler.ui.customview.PasswordEditText
+            <com.dicoding.shavemax.ui.customview.PasswordEditText
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HairStyler"
+rootProject.name = "ShaveMax"
 include(":app")
  

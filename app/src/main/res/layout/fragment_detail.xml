@@ -103,6 +103,7 @@
         app:srcCompat="@drawable/baseline_favorite_border_24"
         app:fabSize="auto"
         app:fabCustomSize="80dp"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:backgroundTint="@color/blue3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

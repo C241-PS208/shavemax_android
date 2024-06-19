@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dicoding.hairstyler"
+    namespace = "com.dicoding.shavemax"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.dicoding.hairstyler"
+        applicationId = "com.dicoding.shavemax"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
