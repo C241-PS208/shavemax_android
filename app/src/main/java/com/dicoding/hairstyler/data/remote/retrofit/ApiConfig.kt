@@ -16,6 +16,8 @@ class ApiConfig {
 
         private const val BASE_URL_ONE = BuildConfig.BASE_URL_ONE
         private const val BASE_URL_TWO = BuildConfig.BASE_URL_TWO
+        private const val NEWS_BASE_URL = BuildConfig.NEWS_BASE_URL
+        private const val NEWS_API_KEY = BuildConfig.NEWS_API_KEY
 
         private fun createOkHttpClient(sessionPreference: SessionPreference): OkHttpClient {
             val user = runBlocking { sessionPreference.getToken().first() }
@@ -56,6 +58,27 @@ class ApiConfig {
             val client = createOkHttpClient(sessionPreference)
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL_TWO)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(ApiService::class.java)
+        }
+
+        fun getNewsApiService() : ApiService {
+            val loggingInterceptor = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            } else {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+            }
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl(NEWS_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

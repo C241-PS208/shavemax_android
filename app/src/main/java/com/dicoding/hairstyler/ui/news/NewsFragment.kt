@@ -1,4 +1,4 @@
-package com.dicoding.hairstyler.ui.home
+package com.dicoding.hairstyler.ui.news
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,46 +10,45 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.hairstyler.databinding.FragmentHomeBinding
+import com.dicoding.hairstyler.databinding.FragmentNewsBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
+import com.dicoding.hairstyler.ui.main.MainActivity
 import com.dicoding.hairstyler.utils.ResultState
 
-class HomeFragment : Fragment() {
+class NewsFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel: HomeViewModel by viewModels {
-        ViewModelFactory.getInstance(requireActivity())
-    }
+    private val viewModel: NewsViewModel by viewModels{ ViewModelFactory.getInstance(requireActivity()) }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        return root
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNav()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNav()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        homeViewModel.getUser().observe(viewLifecycleOwner){
-            binding.tvDisplayUsername.text = it.name
-        }
 
         setupAction()
         setupAdapter()
     }
 
     private fun setupAdapter() {
-        homeViewModel.getAllHairstyle().observe(viewLifecycleOwner){result ->
+        viewModel.getHairstyleNews().observe(viewLifecycleOwner){result ->
             if (result != null){
                 when (result) {
                     is ResultState.Error -> {
@@ -68,11 +67,11 @@ class HomeFragment : Fragment() {
 
                     is ResultState.Success -> {
                         showLoading(false)
-                        val hairstyleList = result.data
-                        val homeAdapter = HomeAdapter()
-                        homeAdapter.submitList(hairstyleList)
-                        binding.rvResult.layoutManager = LinearLayoutManager(requireActivity())
-                        binding.rvResult.adapter = homeAdapter
+                        val newsList = result.data.articles
+                        val newsAdapter = NewsAdapter()
+                        newsAdapter.submitList(newsList)
+                        binding.rvNews.layoutManager = LinearLayoutManager(requireActivity())
+                        binding.rvNews.adapter = newsAdapter
                     }
                 }
             }
@@ -80,24 +79,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.apply {
-            progressBar.isVisible = isLoading
-        }
+        binding.progressBar.isVisible = isLoading
     }
 
     private fun setupAction() {
-        binding.btnOpenScanner.setOnClickListener{
-            val toScannerFragment = HomeFragmentDirections.actionNavigationHomeToNavigationScanner()
-            it.findNavController().navigate(toScannerFragment)
-        }
-        binding.btnOpenNews.setOnClickListener {
-            val toNewsFragment =  HomeFragmentDirections.actionNavigationHomeToNewsFragment()
-            it.findNavController().navigate(toNewsFragment)
+        binding.btnBackToHome.setOnClickListener {
+            it.findNavController().navigateUp()
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         _binding = null
     }
 }

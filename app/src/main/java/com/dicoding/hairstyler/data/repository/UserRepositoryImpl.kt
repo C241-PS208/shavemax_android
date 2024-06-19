@@ -8,6 +8,7 @@ import com.dicoding.hairstyler.data.remote.request.SignInRequest
 import com.dicoding.hairstyler.data.remote.request.SignUpRequest
 import com.dicoding.hairstyler.data.remote.response.ErrorResponse
 import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
+import com.dicoding.hairstyler.data.remote.response.NewsResponse
 import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.data.remote.response.SignUpSuccessResponse
 import com.dicoding.hairstyler.data.remote.retrofit.ApiService
@@ -22,7 +23,7 @@ import retrofit2.HttpException
 import java.io.File
 import java.net.SocketTimeoutException
 
-class UserRepositoryImpl (private val sessionPreference: SessionPreference, private val apiServiceOne: ApiService, private val apiServiceTwo: ApiService) : UserRepository{
+class UserRepositoryImpl (private val sessionPreference: SessionPreference, private val apiServiceOne: ApiService, private val apiServiceTwo: ApiService, private val newsApiService : ApiService) : UserRepository{
     override suspend fun saveToken(userModel: UserModel) {
         sessionPreference.saveToken(userModel)
     }
@@ -99,6 +100,23 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
         }
     }
 
+    override fun getHairstyleNews(): LiveData<ResultState<NewsResponse>> = liveData {
+        emit(ResultState.Loading)
+        try {
+            val newsResponse = newsApiService.getHairstyleNews()
+            emit(ResultState.Success(newsResponse))
+        } catch (e: HttpException) {
+            val errorMessage = extractErrorMessage(e)
+            emit(ResultState.Error(errorMessage))
+        } catch (e: SocketTimeoutException) {
+            val errorMessage = "Request timed out. Please try again."
+            emit(ResultState.Error(errorMessage))
+        } catch (e: Exception) {
+            val errorMessage = "An unexpected error occurred: ${e.localizedMessage}"
+            emit(ResultState.Error(errorMessage))
+        }
+    }
+
     private fun extractErrorMessage(e: HttpException): String {
         return try {
             val jsonInString = e.response()?.errorBody()?.string()
@@ -113,9 +131,9 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
         @Volatile
 
         private var INSTANCE : UserRepositoryImpl? = null
-        fun getRepositoryInstance(sessionPreference: SessionPreference, apiServiceOne: ApiService, apiServiceTwo: ApiService) : UserRepositoryImpl{
+        fun getRepositoryInstance(sessionPreference: SessionPreference, apiServiceOne: ApiService, apiServiceTwo: ApiService, newsApiService: ApiService) : UserRepositoryImpl{
             return INSTANCE ?: synchronized(this){
-                INSTANCE ?: UserRepositoryImpl(sessionPreference, apiServiceOne, apiServiceTwo)
+                INSTANCE ?: UserRepositoryImpl(sessionPreference, apiServiceOne, apiServiceTwo, newsApiService)
             }.also { INSTANCE = it }
         }
     }

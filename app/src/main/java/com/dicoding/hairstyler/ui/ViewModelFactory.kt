@@ -10,6 +10,7 @@ import com.dicoding.hairstyler.ui.authentication.login.LoginViewModel
 import com.dicoding.hairstyler.ui.authentication.register.RegisterViewModel
 import com.dicoding.hairstyler.ui.home.HomeViewModel
 import com.dicoding.hairstyler.ui.main.MainViewModel
+import com.dicoding.hairstyler.ui.news.NewsViewModel
 import com.dicoding.hairstyler.ui.result.ResultViewModel
 import com.dicoding.hairstyler.ui.scanner.ScannerViewModel
 
@@ -39,6 +40,9 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(ScannerViewModel::class.java) -> {
                 ScannerViewModel(repositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(NewsViewModel::class.java) -> {
+                NewsViewModel(repositoryImpl) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

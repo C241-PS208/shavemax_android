@@ -1,8 +1,10 @@
 package com.dicoding.hairstyler.data.remote.retrofit
 
+import com.dicoding.hairstyler.BuildConfig
 import com.dicoding.hairstyler.data.remote.request.SignInRequest
 import com.dicoding.hairstyler.data.remote.request.SignUpRequest
 import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
+import com.dicoding.hairstyler.data.remote.response.NewsResponse
 import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.data.remote.response.SignInSuccessResponse
 import com.dicoding.hairstyler.data.remote.response.SignUpSuccessResponse
@@ -40,4 +42,6 @@ interface ApiService {
     @GET("hairstyles/all")
     suspend fun getAllHairstyle(): List<HairstyleResponseItem>
 
+    @GET("v2/everything?q=(hairstyles OR haircuts)&language=en&sortBy=relevancy&apiKey=${BuildConfig.NEWS_API_KEY}")
+    suspend fun getHairstyleNews(): NewsResponse
 }

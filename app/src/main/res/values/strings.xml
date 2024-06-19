@@ -46,4 +46,6 @@
     <string name="scan_label">Scan</string>
     <string name="saved_label">Saved</string>
     <string name="find_hairstyles">Find Hairstyles</string>
+    <string name="news">News</string>
+    <string name="news_thumbnail">News Thumbnail</string>
 </resources>

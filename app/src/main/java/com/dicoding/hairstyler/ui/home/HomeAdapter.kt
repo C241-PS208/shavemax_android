@@ -33,9 +33,9 @@ class HomeAdapter : ListAdapter<HairstyleResponseItem, HomeAdapter.MyViewHolder>
         holder.bind(hairstyleResponseItem)
         holder.itemView.setOnClickListener {
             val toDetailFragment = HomeFragmentDirections.actionNavigationHomeToDetailFragment(
-                hairstyleResponseItem.name ?: "Tes Name",
-                hairstyleResponseItem.description ?: "Tes Desc",
-                hairstyleResponseItem.photoUrl ?: "https://cdn.britannica.com/61/137461-050-BB6C5D80/Brad-Pitt-2008.jpg"
+                hairstyleResponseItem.name,
+                hairstyleResponseItem.description,
+                hairstyleResponseItem.photoUrl
             )
             holder.itemView.findNavController().navigate(toDetailFragment)
         }
