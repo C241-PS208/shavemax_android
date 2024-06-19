@@ -8,6 +8,7 @@ import com.dicoding.hairstyler.di.Injection
 import com.dicoding.hairstyler.ui.account.AccountViewModel
 import com.dicoding.hairstyler.ui.authentication.login.LoginViewModel
 import com.dicoding.hairstyler.ui.authentication.register.RegisterViewModel
+import com.dicoding.hairstyler.ui.authentication.welcome.WelcomeViewModel
 import com.dicoding.hairstyler.ui.home.HomeViewModel
 import com.dicoding.hairstyler.ui.main.MainViewModel
 import com.dicoding.hairstyler.ui.result.ResultViewModel
@@ -31,14 +32,14 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                 AccountViewModel(repositoryImpl) as T
             }
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(repositoryImpl) as T
-            }
             modelClass.isAssignableFrom(ResultViewModel::class.java) -> {
                 ResultViewModel(repositoryImpl) as T
             }
             modelClass.isAssignableFrom(ScannerViewModel::class.java) -> {
                 ScannerViewModel(repositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(WelcomeViewModel::class.java) -> {
+                WelcomeViewModel(repositoryImpl) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

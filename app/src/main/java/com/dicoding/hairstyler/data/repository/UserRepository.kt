@@ -21,5 +21,4 @@ interface UserRepository {
 
     fun predict(image : File, gender: String) : LiveData<ResultState<ResultResponse>>
 
-    fun getAllHairstyle() : LiveData<ResultState<List<HairstyleResponseItem>>>
 }

@@ -4,6 +4,8 @@ import android.content.Context
 import com.dicoding.hairstyler.data.local.preference.SessionPreference
 import com.dicoding.hairstyler.data.local.preference.dataStore
 import com.dicoding.hairstyler.data.remote.retrofit.ApiConfig
+import com.dicoding.hairstyler.data.repository.HairRepository
+import com.dicoding.hairstyler.data.repository.HairRepositoryImpl
 import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
 
 object Injection {
@@ -12,5 +14,11 @@ object Injection {
         val apiServiceOne = ApiConfig.getApiServiceOne(sessionPreference)
         val apiServiceTwo = ApiConfig.getApiServiceTwo(sessionPreference)
         return UserRepositoryImpl.getRepositoryInstance(sessionPreference, apiServiceOne, apiServiceTwo)
+    }
+
+    fun provideHairRepository(context: Context) : HairRepositoryImpl{
+        val sessionPreference = SessionPreference.getPreferenceInstance(context.dataStore)
+        val apiService = ApiConfig.getApiServiceOne(sessionPreference)
+        return HairRepositoryImpl.getRepositoryInstance(apiService)
     }
 }

@@ -82,23 +82,6 @@ class UserRepositoryImpl (private val sessionPreference: SessionPreference, priv
         }
     }
 
-    override fun getAllHairstyle(): LiveData<ResultState<List<HairstyleResponseItem>>> = liveData {
-        emit(ResultState.Loading)
-        try {
-            val hairstyleResponse = apiServiceOne.getAllHairstyle()
-            emit(ResultState.Success(hairstyleResponse))
-        } catch (e: HttpException) {
-            val errorMessage = extractErrorMessage(e)
-            emit(ResultState.Error(errorMessage))
-        } catch (e: SocketTimeoutException) {
-            val errorMessage = "Request timed out. Please try again."
-            emit(ResultState.Error(errorMessage))
-        } catch (e: Exception) {
-            val errorMessage = "An unexpected error occurred: ${e.localizedMessage}"
-            emit(ResultState.Error(errorMessage))
-        }
-    }
-
     private fun extractErrorMessage(e: HttpException): String {
         return try {
             val jsonInString = e.response()?.errorBody()?.string()

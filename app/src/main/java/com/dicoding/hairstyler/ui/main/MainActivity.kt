@@ -11,7 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.databinding.ActivityMainBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
-import com.dicoding.hairstyler.ui.authentication.WelcomeActivity
+import com.dicoding.hairstyler.ui.authentication.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
