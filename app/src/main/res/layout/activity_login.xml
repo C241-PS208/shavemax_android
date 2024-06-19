@@ -71,8 +71,7 @@
             <com.dicoding.hairstyler.ui.customview.EmailEditText
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:paddingVertical="8dp"
+                android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"
@@ -93,9 +92,8 @@
             <com.dicoding.hairstyler.ui.customview.PasswordEditText
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:paddingVertical="8dp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edittext_background"

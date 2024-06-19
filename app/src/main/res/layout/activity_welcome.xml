@@ -8,27 +8,17 @@
     android:background="@color/blue1"
     tools:context=".ui.authentication.welcome.WelcomeActivity">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/welcomeLogoContainer"
+    <ImageView
+        android:id="@+id/ivWelcomeLogo"
         android:layout_width="256dp"
         android:layout_height="256dp"
-        android:layout_marginTop="132dp"
-        app:cardCornerRadius="50dp"
+        android:contentDescription="@string/different_types_of_hairstyle"
+        android:src="@drawable/shavemax_logo"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutTwo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/ivWelcomeLogo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/different_types_of_hairstyle"
-            android:src="@drawable/welcome_logo" />
-
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -43,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeLogoContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/ivWelcomeLogo" />
 
 
     <LinearLayout
@@ -76,23 +66,23 @@
             android:fontFamily="@font/sora_bold"
             android:gravity="center"
             android:padding="8dp"
-            android:textColor="@color/gray"
             android:text="@string/create_account"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/gray" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnToLoginPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/transparent_button_background"
-            android:layout_marginHorizontal="32dp"
+            android:fontFamily="@font/sora_regular"
             android:text="@string/i_already_have_an_account"
             android:textAllCaps="false"
-            android:fontFamily="@font/sora_regular"
-            android:textColor="@color/blue3"/>
+            android:textColor="@color/blue3" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
