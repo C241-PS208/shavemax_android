@@ -26,7 +26,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_navigation_home_to_newsFragment"
-            app:destination="@id/newsFragment"
+            app:destination="@id/navigation_news"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -116,10 +116,11 @@
             android:name="hairstylePicture"
             app:argType="string" />
     </fragment>
+
     <fragment
-        android:id="@+id/newsFragment"
+        android:id="@+id/navigation_news"
         android:name="com.dicoding.hairstyler.ui.news.NewsFragment"
-        android:label="fragment_news"
+        android:label="@string/news_nav_title"
         tools:layout="@layout/fragment_news" >
         <action
             android:id="@+id/action_newsFragment_to_detailFragment"

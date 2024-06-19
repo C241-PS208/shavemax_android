@@ -12,8 +12,12 @@
         android:title="@string/title_scanner" />
 
     <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/baseline_newspaper_24"
+        android:title="@string/news_nav_title" />
+
+    <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/baseline_manage_accounts_black_24"
         android:title="@string/title_account" />
-
 </menu>

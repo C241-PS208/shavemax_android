@@ -117,6 +117,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sora_regular"
                         android:gravity="center"
+                        android:layout_marginBottom="4dp"
                         android:text="@string/scan_label"
                         android:textColor="@color/black"
                         android:textSize="11sp" />
@@ -152,6 +153,7 @@
                         android:fontFamily="@font/sora_regular"
                         android:gravity="center"
                         android:text="@string/saved_label"
+                        android:layout_marginBottom="4dp"
                         android:textColor="@color/black"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -185,6 +187,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sora_regular"
                         android:gravity="center"
+                        android:layout_marginBottom="4dp"
                         android:text="@string/news"
                         android:textColor="@color/black"
                         android:textSize="11sp" />
