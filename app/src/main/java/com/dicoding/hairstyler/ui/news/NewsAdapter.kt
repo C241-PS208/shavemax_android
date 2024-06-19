@@ -1,5 +1,7 @@
 package com.dicoding.hairstyler.ui.news
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -30,6 +32,11 @@ class NewsAdapter : ListAdapter<ArticlesItem, NewsAdapter.MyViewHolder>(DIFF_CAL
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val articlesItem = getItem(position)
         holder.bind(articlesItem)
+        holder.itemView.setOnClickListener {
+            val articlesUrl = articlesItem.url
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(articlesUrl))
+            holder.itemView.context.startActivity(browserIntent)
+        }
     }
 
     companion object {

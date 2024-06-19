@@ -12,7 +12,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.hairstyler.databinding.FragmentHomeBinding
 import com.dicoding.hairstyler.ui.HairViewModelFactory
-import com.dicoding.hairstyler.ui.ViewModelFactory
 import com.dicoding.hairstyler.utils.ResultState
 
 class HomeFragment : Fragment() {
