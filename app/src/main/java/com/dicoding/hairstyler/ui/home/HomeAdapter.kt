@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.databinding.CardviewResultBinding
-import com.dicoding.hairstyler.ui.result.ResultFragmentDirections
 
 class HomeAdapter : ListAdapter<HairstyleResponseItem, HomeAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -33,7 +32,7 @@ class HomeAdapter : ListAdapter<HairstyleResponseItem, HomeAdapter.MyViewHolder>
         val hairstyleResponseItem = getItem(position)
         holder.bind(hairstyleResponseItem)
         holder.itemView.setOnClickListener {
-            val toDetailFragment = ResultFragmentDirections.actionResultFragmentToDetailFragment(
+            val toDetailFragment = HomeFragmentDirections.actionNavigationHomeToDetailFragment(
                 hairstyleResponseItem.name ?: "Tes Name",
                 hairstyleResponseItem.description ?: "Tes Desc",
                 hairstyleResponseItem.photoUrl ?: "https://cdn.britannica.com/61/137461-050-BB6C5D80/Brad-Pitt-2008.jpg"
