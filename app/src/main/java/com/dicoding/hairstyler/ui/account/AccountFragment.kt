@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.dicoding.hairstyler.databinding.FragmentAccountBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
+import com.dicoding.hairstyler.ui.home.HomeFragmentDirections
+
 class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
@@ -50,7 +53,8 @@ class AccountFragment : Fragment() {
 
     fun setupAction() {
         binding.rowSavedHairstyle.setOnClickListener {
-
+            val toSavedFragment = AccountFragmentDirections.actionNavigationAccountToSavedHairstyleFragment()
+            it.findNavController().navigate(toSavedFragment)
         }
     }
     override fun onDestroyView() {

@@ -44,7 +44,7 @@ class SavedHairstyleFragment : Fragment() {
 
     fun setupAction() {
         binding.btnBackToHome.setOnClickListener {
-            it.findNavController().navigate(R.id.action_savedHairstyleFragment_to_navigation_home)
+            it.findNavController().popBackStack()
         }
     }
 
