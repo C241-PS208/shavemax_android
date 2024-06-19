@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.dicoding.hairstyler.data.repository.HairRepositoryImpl
 import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
 import com.dicoding.hairstyler.di.Injection
+import com.dicoding.hairstyler.ui.detail.DetailViewModel
 import com.dicoding.hairstyler.ui.home.HomeViewModel
 
 class HairViewModelFactory(
@@ -17,6 +18,9 @@ class HairViewModelFactory(
         return when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repositoryImpl, hairRepositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
+                DetailViewModel(hairRepositoryImpl) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -8,14 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.dicoding.hairstyler.R
 import com.dicoding.hairstyler.databinding.FragmentDetailBinding
+import com.dicoding.hairstyler.ui.HairViewModelFactory
 
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: DetailViewModel by viewModels()
+    private val detailViewModel: DetailViewModel by viewModels {
+        HairViewModelFactory.getInstance(requireActivity())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +50,22 @@ class DetailFragment : Fragment() {
         binding.tvHaircutDetailName.text = hairName
         binding.tvHaircutDetailDesc.text = hairDesc
         Glide.with(requireActivity()).load(hairPic).into(binding.ivDetailHairstylePicture)
+
+        detailViewModel.checkSaved(hairName).observe(viewLifecycleOwner) { isSaved ->
+            if (isSaved != null) {
+                binding.fab.setImageResource(R.drawable.baseline_favorite_24)
+                binding.fab.setOnClickListener {
+                    detailViewModel.deleteHairstyle(hairName, hairDesc, hairPic)
+                }
+            }
+            else {
+                binding.fab.setImageResource(R.drawable.baseline_favorite_border_24)
+                binding.fab.setOnClickListener {
+                    detailViewModel.saveHairstyle(hairName, hairDesc, hairPic)
+                }
+            }
+        }
+
     }
 
     override fun onDestroy() {

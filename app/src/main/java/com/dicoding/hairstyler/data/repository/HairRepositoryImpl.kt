@@ -3,6 +3,8 @@ package com.dicoding.hairstyler.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.dicoding.hairstyler.data.local.preference.SessionPreference
+import com.dicoding.hairstyler.data.local.room.SavedHairstyle
+import com.dicoding.hairstyler.data.local.room.SavedHairstyleDao
 import com.dicoding.hairstyler.data.remote.response.ErrorResponse
 import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.data.remote.retrofit.ApiService
@@ -10,8 +12,12 @@ import com.dicoding.hairstyler.utils.ResultState
 import com.google.gson.Gson
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
-class HairRepositoryImpl (private val apiService: ApiService) : HairRepository{
+class HairRepositoryImpl (private val apiService: ApiService, private val savedHairstyleDao: SavedHairstyleDao) : HairRepository{
+    private val diskIO: Executor = Executors.newSingleThreadExecutor()
+
     override fun getAllHairstyle(): LiveData<ResultState<List<HairstyleResponseItem>>> = liveData {
         emit(ResultState.Loading)
         try {
@@ -29,6 +35,22 @@ class HairRepositoryImpl (private val apiService: ApiService) : HairRepository{
         }
     }
 
+    fun insert(hairstyle: SavedHairstyle) {
+        diskIO.execute { savedHairstyleDao.insert(hairstyle) }
+    }
+
+    fun delete(hairstyle: SavedHairstyle) {
+        diskIO.execute { savedHairstyleDao.delete(hairstyle) }
+    }
+
+    fun getSavedHairstyles(): LiveData<List<SavedHairstyle>> {
+        return savedHairstyleDao.getSavedHairstyles()
+    }
+
+    fun checkSaved(name : String): LiveData<SavedHairstyle> {
+        return savedHairstyleDao.getSavedHairstyleByName(name)
+    }
+
     private fun extractErrorMessage(e: HttpException): String {
         return try {
             val jsonInString = e.response()?.errorBody()?.string()
@@ -43,9 +65,9 @@ class HairRepositoryImpl (private val apiService: ApiService) : HairRepository{
         @Volatile
 
         private var INSTANCE : HairRepositoryImpl? = null
-        fun getRepositoryInstance(apiService: ApiService) : HairRepositoryImpl{
+        fun getRepositoryInstance(apiService: ApiService, savedHairstyleDao: SavedHairstyleDao) : HairRepositoryImpl{
             return INSTANCE ?: synchronized(this){
-                INSTANCE ?: HairRepositoryImpl(apiService)
+                INSTANCE ?: HairRepositoryImpl(apiService, savedHairstyleDao)
             }.also { INSTANCE = it }
         }
     }
