@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HairStyler</string>
+    <string name="app_name">ShaveMax</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -21,4 +21,33 @@
     <string name="gender_hint">gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="title_scanner">Scanner</string>
+    <string name="title_account">Account</string>
+    <string name="scan_title">Upload an Image of Your Face</string>
+    <string name="scan_desc">Find out the shape of your face and the type of your hair</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="scan">Scan</string>
+    <string name="user_face">User Face</string>
+    <string name="no_media_selected">No media selected</string>
+    <string name="profile">Profile</string>
+    <string name="log_out">Log Out</string>
+    <string name="haircut_model">Haircut Model</string>
+    <string name="your_hair_type_is_title">Your hair type is:</string>
+    <string name="your_face_type_is_title">Your face type is:</string>
+    <string name="recommended_hairstyles_title">Recommended Hairstyles</string>
+    <string name="barbermap">Barbershop Near You</string>
+    <string name="savedhairstyle">Saved Hairstyle</string>
+    <string name="map_icon">map icon\n</string>
+    <string name="arrow_icon">arrow icon</string>
+    <string name="bookmark_icon">bookmark icon</string>
+    <string name="hello_home">Hello,</string>
+    <string name="map_label">Map</string>
+    <string name="scan_label">Scan</string>
+    <string name="saved_label">Saved</string>
+    <string name="find_hairstyles">Find Hairstyles</string>
+    <string name="save_hairstyle">save hairstyle</string>
+    <string name="news">News</string>
+    <string name="news_thumbnail">News Thumbnail</string>
+    <string name="news_nav_title">News</string>
 </resources>
