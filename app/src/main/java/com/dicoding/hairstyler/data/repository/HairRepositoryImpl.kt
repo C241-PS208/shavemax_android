@@ -1,6 +1,7 @@
 package com.dicoding.hairstyler.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.dicoding.hairstyler.data.local.preference.SessionPreference
 import com.dicoding.hairstyler.data.local.room.SavedHairstyle
@@ -10,6 +11,9 @@ import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.data.remote.retrofit.ApiService
 import com.dicoding.hairstyler.utils.ResultState
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.util.concurrent.Executor
@@ -43,8 +47,28 @@ class HairRepositoryImpl (private val apiService: ApiService, private val savedH
         diskIO.execute { savedHairstyleDao.delete(hairstyle) }
     }
 
-    fun getSavedHairstyles(): LiveData<List<SavedHairstyle>> {
-        return savedHairstyleDao.getSavedHairstyles()
+    fun getSavedHairstyles(): LiveData<ResultState<List<SavedHairstyle>>> {
+        val resultLiveData = MutableLiveData<ResultState<List<SavedHairstyle>>>()
+
+        resultLiveData.value = ResultState.Loading
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val hairstyleResponse = savedHairstyleDao.getSavedHairstyles()
+                resultLiveData.postValue(ResultState.Success(hairstyleResponse))
+            } catch (e: HttpException) {
+                val errorMessage = extractErrorMessage(e)
+                resultLiveData.postValue(ResultState.Error(errorMessage))
+            } catch (e: SocketTimeoutException) {
+                val errorMessage = "Request timed out. Please try again."
+                resultLiveData.postValue(ResultState.Error(errorMessage))
+            } catch (e: Exception) {
+                val errorMessage = "An unexpected error occurred: ${e.localizedMessage}"
+                resultLiveData.postValue(ResultState.Error(errorMessage))
+            }
+        }
+
+        return resultLiveData
     }
 
     fun checkSaved(name : String): LiveData<SavedHairstyle> {

@@ -8,6 +8,7 @@ import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
 import com.dicoding.hairstyler.di.Injection
 import com.dicoding.hairstyler.ui.detail.DetailViewModel
 import com.dicoding.hairstyler.ui.home.HomeViewModel
+import com.dicoding.hairstyler.ui.savedhairstyle.SavedHairstyleViewModel
 
 class HairViewModelFactory(
     private val repositoryImpl: UserRepositoryImpl,
@@ -21,6 +22,9 @@ class HairViewModelFactory(
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(hairRepositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(SavedHairstyleViewModel::class.java) -> {
+                SavedHairstyleViewModel(hairRepositoryImpl) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -11,7 +11,9 @@ import com.dicoding.hairstyler.ui.authentication.register.RegisterViewModel
 import com.dicoding.hairstyler.ui.authentication.welcome.WelcomeViewModel
 import com.dicoding.hairstyler.ui.home.HomeViewModel
 import com.dicoding.hairstyler.ui.main.MainViewModel
+import com.dicoding.hairstyler.ui.news.NewsViewModel
 import com.dicoding.hairstyler.ui.result.ResultViewModel
+import com.dicoding.hairstyler.ui.savedhairstyle.SavedHairstyleViewModel
 import com.dicoding.hairstyler.ui.scanner.ScannerViewModel
 
 class ViewModelFactory(
@@ -37,6 +39,9 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(ScannerViewModel::class.java) -> {
                 ScannerViewModel(repositoryImpl) as T
+            }
+            modelClass.isAssignableFrom(NewsViewModel::class.java) -> {
+                NewsViewModel(repositoryImpl) as T
             }
             modelClass.isAssignableFrom(WelcomeViewModel::class.java) -> {
                 WelcomeViewModel(repositoryImpl) as T

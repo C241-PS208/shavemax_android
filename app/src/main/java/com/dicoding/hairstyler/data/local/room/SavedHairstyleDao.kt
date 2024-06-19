@@ -16,7 +16,7 @@ interface SavedHairstyleDao {
     fun delete(hairstyle: SavedHairstyle)
 
     @Query("SELECT * from savedhairstyle")
-    fun getSavedHairstyles(): LiveData<List<SavedHairstyle>>
+    fun getSavedHairstyles(): List<SavedHairstyle>
 
     @Query("SELECT * FROM savedhairstyle WHERE name = :name")
     fun getSavedHairstyleByName(name: String): LiveData<SavedHairstyle>

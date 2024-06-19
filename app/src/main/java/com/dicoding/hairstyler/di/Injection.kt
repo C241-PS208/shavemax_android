@@ -14,7 +14,8 @@ object Injection {
         val sessionPreference = SessionPreference.getPreferenceInstance(context.dataStore)
         val apiServiceOne = ApiConfig.getApiServiceOne(sessionPreference)
         val apiServiceTwo = ApiConfig.getApiServiceTwo(sessionPreference)
-        return UserRepositoryImpl.getRepositoryInstance(sessionPreference, apiServiceOne, apiServiceTwo)
+        val newsApiService = ApiConfig.getNewsApiService()
+        return UserRepositoryImpl.getRepositoryInstance(sessionPreference, apiServiceOne, apiServiceTwo, newsApiService)
     }
 
     fun provideHairRepository(context: Context) : HairRepositoryImpl{

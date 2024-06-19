@@ -19,6 +19,10 @@ android {
 
         buildConfigField("String", "BASE_URL_ONE", "\"https://shavemax-wcd5thfyoq-et.a.run.app/api/\"")
         buildConfigField("String", "BASE_URL_TWO", "\"http://35.224.249.79:5000/\"")
+        buildConfigField("String", "NEWS_BASE_URL", "\"https://newsapi.org/\"")
+        buildConfigField("String", "NEWS_API_KEY", "\"42d5b7de7d1446cf891a4bf7c5508335\"")
+
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

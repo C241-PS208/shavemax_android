@@ -1,5 +1,6 @@
-package com.dicoding.hairstyler.ui.home
+package com.dicoding.hairstyler.ui.savedhairstyle
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -7,13 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.hairstyler.data.local.room.SavedHairstyle
 import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.databinding.CardviewResultBinding
 
-class HomeAdapter : ListAdapter<HairstyleResponseItem, HomeAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class SavedHairstyleAdapter : ListAdapter<SavedHairstyle, SavedHairstyleAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     inner class MyViewHolder(val binding: CardviewResultBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: HairstyleResponseItem) {
+        fun bind(item: SavedHairstyle) {
             binding.tvHaircutName.text = item.name
             binding.tvHaircutDesc.text = item.description
             Glide.with(binding.root)
@@ -29,30 +31,31 @@ class HomeAdapter : ListAdapter<HairstyleResponseItem, HomeAdapter.MyViewHolder>
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val hairstyleResponseItem = getItem(position)
-        holder.bind(hairstyleResponseItem)
+        val savedHairstyle = getItem(position)
+        holder.bind(savedHairstyle)
         holder.itemView.setOnClickListener {
-            val toDetailFragment = HomeFragmentDirections.actionNavigationHomeToDetailFragment(
-                hairstyleResponseItem.name,
-                hairstyleResponseItem.description,
-                hairstyleResponseItem.photoUrl
+            val toDetailFragment = SavedHairstyleFragmentDirections.actionSavedHairstyleFragmentToDetailFragment(
+                savedHairstyle.name,
+                savedHairstyle.description,
+                savedHairstyle.photoUrl
             )
             holder.itemView.findNavController().navigate(toDetailFragment)
         }
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HairstyleResponseItem>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<SavedHairstyle>() {
             override fun areItemsTheSame(
-                oldItem: HairstyleResponseItem,
-                newItem: HairstyleResponseItem
+                oldItem: SavedHairstyle,
+                newItem: SavedHairstyle
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.name == newItem.name
             }
 
+            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(
-                oldItem: HairstyleResponseItem,
-                newItem: HairstyleResponseItem
+                oldItem: SavedHairstyle,
+                newItem: SavedHairstyle
             ): Boolean {
                 return oldItem == newItem
             }
