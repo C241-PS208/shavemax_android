@@ -7,15 +7,16 @@ import com.dicoding.hairstyler.data.repository.HairRepositoryImpl
 import com.dicoding.hairstyler.data.repository.UserRepositoryImpl
 import com.dicoding.hairstyler.di.Injection
 import com.dicoding.hairstyler.ui.home.HomeViewModel
+
 class HairViewModelFactory(
-    private val hairRepositoryImpl: HairRepositoryImpl,
-    private val userRepositoryImpl: UserRepositoryImpl,
+    private val repositoryImpl: UserRepositoryImpl,
+    private val hairRepositoryImpl: HairRepositoryImpl
 ) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(hairRepositoryImpl, userRepositoryImpl) as T
+                HomeViewModel(repositoryImpl, hairRepositoryImpl) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
@@ -30,8 +31,8 @@ class HairViewModelFactory(
             if (INSTANCE == null) {
                 synchronized(HairViewModelFactory::class.java) {
                     INSTANCE = HairViewModelFactory(
-                        Injection.provideHairRepository(context),
                         Injection.provideUserRepository(context),
+                        Injection.provideHairRepository(context)
                     )
                 }
             }

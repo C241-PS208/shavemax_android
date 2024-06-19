@@ -8,7 +8,6 @@ import com.dicoding.hairstyler.data.remote.response.SignInSuccessResponse
 import com.dicoding.hairstyler.data.remote.response.SignUpSuccessResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -39,5 +38,6 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @GET("hairstyles/all")
-    suspend fun getAllHairstyle(): Response<List<HairstyleResponseItem>>
+    suspend fun getAllHairstyle(): List<HairstyleResponseItem>
+
 }

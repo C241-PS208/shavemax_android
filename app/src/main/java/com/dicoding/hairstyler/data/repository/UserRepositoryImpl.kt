@@ -7,6 +7,7 @@ import com.dicoding.hairstyler.data.local.preference.UserModel
 import com.dicoding.hairstyler.data.remote.request.SignInRequest
 import com.dicoding.hairstyler.data.remote.request.SignUpRequest
 import com.dicoding.hairstyler.data.remote.response.ErrorResponse
+import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.data.remote.response.SignUpSuccessResponse
 import com.dicoding.hairstyler.data.remote.retrofit.ApiService

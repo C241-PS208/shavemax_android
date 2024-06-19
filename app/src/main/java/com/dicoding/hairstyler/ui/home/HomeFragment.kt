@@ -5,20 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.hairstyler.data.remote.response.HairstyleResponse
-import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
-import com.dicoding.hairstyler.data.remote.response.ResultResponse
 import com.dicoding.hairstyler.databinding.FragmentHomeBinding
 import com.dicoding.hairstyler.ui.HairViewModelFactory
 import com.dicoding.hairstyler.ui.ViewModelFactory
-import com.dicoding.hairstyler.ui.scanner.ScannerFragmentDirections
 import com.dicoding.hairstyler.utils.ResultState
 
 class HomeFragment : Fragment() {
@@ -52,14 +46,43 @@ class HomeFragment : Fragment() {
         }
 
         setupAction()
-        homeViewModel.listHairstyle.observe(viewLifecycleOwner) { hairstyles ->
-            setupAdapter(hairstyles)
-        }
+        setupAdapter()
+    }
 
-        homeViewModel.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
+    private fun setupAdapter() {
+        homeViewModel.hairList.observe(viewLifecycleOwner){result ->
+            if (result != null){
+                when (result) {
+                    is ResultState.Error -> {
+                        showLoading(false)
+                        AlertDialog.Builder(requireActivity()).apply {
+                            setTitle("Failed!")
+                            setMessage(result.error)
+                            setPositiveButton("OK") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            create()
+                            show()
+                        }
+                    }
+                    is ResultState.Loading -> showLoading(true)
+                    is ResultState.Success -> {
+                        showLoading(false)
+                        val hairstyleList = result.data
+                        val homeAdapter = HomeAdapter()
+                        homeAdapter.submitList(hairstyleList)
+                        binding.rvResult.layoutManager = LinearLayoutManager(requireActivity())
+                        binding.rvResult.adapter = homeAdapter
+                    }
+                }
+            }
         }
-        homeViewModel.getHairstyles()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.apply {
+            progressBar.isVisible = isLoading
+        }
     }
 
     private fun setupAction() {
@@ -67,17 +90,6 @@ class HomeFragment : Fragment() {
             val toScannerFragment = HomeFragmentDirections.actionNavigationHomeToNavigationScanner()
             it.findNavController().navigate(toScannerFragment)
         }
-    }
-
-    private fun setupAdapter(listHairstyle: List<HairstyleResponseItem>) {
-        val adapter = HairstyleAdapter()
-        adapter.submitList(listHairstyle)
-        binding.rvResult.layoutManager = LinearLayoutManager(requireActivity())
-        binding.rvResult.adapter = adapter
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

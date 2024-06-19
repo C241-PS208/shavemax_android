@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.hairstyler.databinding.ActivityRegisterBinding
 import com.dicoding.hairstyler.ui.ViewModelFactory
 import com.dicoding.hairstyler.ui.authentication.login.LoginActivity
-import com.dicoding.hairstyler.ui.authentication.WelcomeActivity
+import com.dicoding.hairstyler.ui.authentication.welcome.WelcomeActivity
 
 class RegisterActivity : AppCompatActivity() {
 

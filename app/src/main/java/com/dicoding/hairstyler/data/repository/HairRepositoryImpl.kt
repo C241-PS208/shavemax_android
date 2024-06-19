@@ -1,23 +1,31 @@
 package com.dicoding.hairstyler.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import com.dicoding.hairstyler.data.local.preference.SessionPreference
 import com.dicoding.hairstyler.data.remote.response.ErrorResponse
-import com.dicoding.hairstyler.data.remote.response.HairstyleResponse
 import com.dicoding.hairstyler.data.remote.response.HairstyleResponseItem
 import com.dicoding.hairstyler.data.remote.retrofit.ApiService
+import com.dicoding.hairstyler.utils.ResultState
 import com.google.gson.Gson
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 
-class HairRepositoryImpl (private val apiServiceOne: ApiService, private val apiServiceTwo: ApiService) : HairRepository {
-    override suspend fun getHairstyles(): Result<List<HairstyleResponseItem>> {
-        return try {
-            val response = apiServiceOne.getAllHairstyle()
-            if (response.isSuccessful) {
-                Result.success(response.body()!!)
-            } else {
-                Result.failure(Exception("Error: ${response.message()}"))
-            }
+class HairRepositoryImpl (private val apiService: ApiService) : HairRepository{
+    override fun getAllHairstyle(): LiveData<ResultState<List<HairstyleResponseItem>>> = liveData {
+        emit(ResultState.Loading)
+        try {
+            val hairstyleResponse = apiService.getAllHairstyle()
+            emit(ResultState.Success(hairstyleResponse))
+        } catch (e: HttpException) {
+            val errorMessage = extractErrorMessage(e)
+            emit(ResultState.Error(errorMessage))
+        } catch (e: SocketTimeoutException) {
+            val errorMessage = "Request timed out. Please try again."
+            emit(ResultState.Error(errorMessage))
         } catch (e: Exception) {
-            Result.failure(e)
+            val errorMessage = "An unexpected error occurred: ${e.localizedMessage}"
+            emit(ResultState.Error(errorMessage))
         }
     }
 
@@ -35,11 +43,10 @@ class HairRepositoryImpl (private val apiServiceOne: ApiService, private val api
         @Volatile
 
         private var INSTANCE : HairRepositoryImpl? = null
-        fun getRepositoryInstance(apiServiceOne: ApiService, apiServiceTwo: ApiService) : HairRepositoryImpl{
+        fun getRepositoryInstance(apiService: ApiService) : HairRepositoryImpl{
             return INSTANCE ?: synchronized(this){
-                INSTANCE ?: HairRepositoryImpl(apiServiceOne, apiServiceTwo)
+                INSTANCE ?: HairRepositoryImpl(apiService)
             }.also { INSTANCE = it }
         }
     }
-
 }
