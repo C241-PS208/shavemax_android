@@ -39,15 +39,15 @@ class HairRepositoryImpl (private val apiService: ApiService, private val savedH
         }
     }
 
-    fun insert(hairstyle: SavedHairstyle) {
+    override fun insert(hairstyle: SavedHairstyle) {
         diskIO.execute { savedHairstyleDao.insert(hairstyle) }
     }
 
-    fun delete(hairstyle: SavedHairstyle) {
+    override fun delete(hairstyle: SavedHairstyle) {
         diskIO.execute { savedHairstyleDao.delete(hairstyle) }
     }
 
-    fun getSavedHairstyles(): LiveData<ResultState<List<SavedHairstyle>>> {
+    override fun getSavedHairstyles(): LiveData<ResultState<List<SavedHairstyle>>> {
         val resultLiveData = MutableLiveData<ResultState<List<SavedHairstyle>>>()
 
         resultLiveData.value = ResultState.Loading
@@ -71,7 +71,7 @@ class HairRepositoryImpl (private val apiService: ApiService, private val savedH
         return resultLiveData
     }
 
-    fun checkSaved(name : String): LiveData<SavedHairstyle> {
+    override fun checkSaved(name : String): LiveData<SavedHairstyle> {
         return savedHairstyleDao.getSavedHairstyleByName(name)
     }
 
