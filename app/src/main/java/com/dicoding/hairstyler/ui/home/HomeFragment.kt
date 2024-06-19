@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        homeViewModel.getAllHairstyle().observe(viewLifecycleOwner){result ->
+        homeViewModel.hairList.observe(viewLifecycleOwner){result ->
             if (result != null){
                 when (result) {
                     is ResultState.Error -> {
