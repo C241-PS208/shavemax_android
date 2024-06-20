@@ -20,7 +20,7 @@ ShaveMax is a mobile application that utilized the machine learning technology t
 Built on Kotlin, this application handle the front end of ShaveMax application. The applications have few features such as hair type detection and recommendation
 
 ## APK Download
-Google Drive: https://drive.google.com/file/d/16lasf38hgN2cf365pW-oWcg-Hdh2xiJE/view
+Google Drive: https://drive.google.com/file/d/1cLzRDzDaTkS_s3gr4AdhrpBB3PTDHfh5/view
 
 
 

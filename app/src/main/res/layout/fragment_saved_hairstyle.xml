@@ -10,7 +10,7 @@
         android:id="@+id/btnBackToHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/transparent_button_background"
         android:contentDescription="@string/back"
@@ -23,14 +23,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/sora_semibold"
         android:text="@string/savedhairstyle"
         android:textColor="@color/blue1"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/btnBackToHome"
-        app:layout_constraintTop_toTopOf="@+id/btnBackToHome" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnBackToHome"
+        app:layout_constraintBottom_toBottomOf="@id/btnBackToHome"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResult"
