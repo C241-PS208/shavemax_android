@@ -1,6 +1,8 @@
 
 # ShaveMax Front End
 
+![ShaveMax Logo](https://github.com/Erzete/shavemax-ui/blob/main/app/src/main/res/drawable/shavemax_logo.webp?raw=true)
+
 ## Description
 ShaveMax is a mobile application that utilized the machine learning technology to predict the face shape and hair type of the user based on the photo provided to the system and recomment suitable hairstyles for the users.
 
